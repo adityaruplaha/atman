@@ -13,7 +13,7 @@ class DB:
     def push(self, sched_class, name, status=None):
         self.deltas.append((sched_class, name, status))
 
-    def commit(self):
+    def commit(self) -> bool:
         cursor = self.db_internal.cursor()
         for sched_class, name, status in self.deltas:
             try:
@@ -25,7 +25,6 @@ class DB:
                 else:
                     status = 0
                 cursor.execute(sql, {
-                    'sched_class': sched_class,
                     'name': name,
                     'status': status
                 })
