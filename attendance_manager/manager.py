@@ -27,6 +27,8 @@ class Manager:
         self.running = True
         self.db = DB(connection_parameters,
                      data_source_parameters['database_name'])
+        self.subject_table = data_source_parameters['subject_table']
+        self.attendance_table = data_source_parameters['attendance_table']
         self.loaded_name_lists = {}
         self.classes = []
 
@@ -49,9 +51,10 @@ class Manager:
 
     def refresh_classes(self) -> None:
         cursor = self.db.db_internal.cursor()
-        cursor.execute(f"SELECT * FROM attendance")
+        cursor.execute(f"SELECT * FROM `{self.attendance_table}`")
         self.classes = list(cursor.column_names)
         self.classes.remove("Name")
+        # Result set is not being used but must must be fetched to keep Python happy.
         cursor.fetchall()
 
     def save(self, filename) -> ReturnCode:
@@ -117,14 +120,14 @@ class Manager:
         subject = SchedClass(sched_cls).subject
         quoted_names = [f"'{name}'" for name in self.name_list(subject)]
         cursor.execute(
-            f"SELECT Name, `{sched_cls}` FROM attendance WHERE Name IN ({','.join(quoted_names)})")
+            f"SELECT Name, `{sched_cls}` FROM `{self.attendance_table}` WHERE Name IN ({','.join(quoted_names)})")
         L = []
         for name, attendance in cursor.fetchall():
             if apply_deltas:
-                matched = [r for r in self.db.deltas if r[0]
+                matched_deltas = [r for r in self.db.deltas if r[0]
                            == sched_cls and r[1] == name]
-                if matched:
-                    attendance = matched[-1][2]
+                if matched_deltas:
+                    attendance = matched_deltas[-1][2]
             L.append((name, attendance))
         return L
 
@@ -132,7 +135,7 @@ class Manager:
         if subject not in self.loaded_name_lists.keys():
             cursor = self.db.db_internal.cursor()
             cursor.execute(
-                "SELECT Name FROM academic WHERE Subjects LIKE %s", (
+                f"SELECT Name FROM `{self.subject_table}` WHERE Subjects LIKE %s", (
                     '%'+subject+'%',)
             )
             self.loaded_name_lists[subject] = [row[0]
