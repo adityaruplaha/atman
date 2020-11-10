@@ -29,3 +29,5 @@ while f.running:
         f.exec()
     except KeyboardInterrupt:
         f.quit()
+    except EOFError:
+        f.quit()
