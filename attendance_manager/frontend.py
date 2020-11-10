@@ -131,11 +131,12 @@ class Frontend:
                 total += 1
                 absent += 1
             print(f"{name} => {attendance}")
-        print("-"*30)
-        print(
-            f"Present: {present}/{total} [{round(present/total*100, 2) if total else None}%]")
-        print(
-            f"Absent: {absent}/{total} [{round(absent/total*100, 2) if total else None}%]")
+        if total:
+            print("-"*30)
+            print(
+                f"Present: {present}/{total} [{round(present/total*100, 2)}%]")
+            print(
+                f"Absent: {absent}/{total} [{round(absent/total*100, 2)}%]")
 
     def exec(self):
         cmd = input(f"{self.sched_class}> ").strip()
