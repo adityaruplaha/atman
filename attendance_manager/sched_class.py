@@ -31,5 +31,8 @@ class SchedClass:
             self.date.isoformat(), self.subject +
             str(self.subject_modifier
                 if self.subject_modifier != None
-                else ''), self.class_identifier
+                else ''),
+            (self.class_identifier
+                if self.class_identifier != None
+                else '')
         ])
