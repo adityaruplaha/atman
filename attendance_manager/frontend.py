@@ -29,12 +29,12 @@ class Frontend:
         elif rt_code == ReturnCode.NULL_ACTION:
             print("WARN: No changes to commit.")
         elif rt_code == ReturnCode.SUCCESS:
-            print("Successfully commited changes to database.")
+            print("Successfully committed changes to database.")
 
     def rollback(self):
         if self.manager.has_pending_deltas():
             choice = input(
-                "Uncommited changes present! Are you sure you want to rollback? THIS IS IRREVERSIBLE. [y/N]: ").lower().strip()
+                "Uncommitted changes present! Are you sure you want to rollback? THIS IS IRREVERSIBLE. [y/N]: ").lower().strip()
             if choice != 'y':
                 return
         rt_code = self.manager.rollback()
