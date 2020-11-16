@@ -95,6 +95,9 @@ class Frontend:
     def mark(self, name_partial, status=None):
         # `matched_names` is returned only if `ReturnCode.MULTIPLE_MATCH` is returned.
         # Otherwise, None is returned.
+        if not self.sched_class:
+            print("Select a class first.")
+            return
         rt_code, matched_names = self.manager.mark(
             name_partial, self.sched_class, status)
         if rt_code == ReturnCode.EMPTY_INPUT:
