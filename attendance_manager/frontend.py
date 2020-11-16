@@ -13,7 +13,7 @@ class Frontend:
     def quit(self):
         if self.manager.has_pending_deltas():
             choice = input(
-                "Uncommited changes present! Are you sure you want to quit? [y/N]: ").lower().strip()
+                "Uncommitted changes present! Are you sure you want to quit? [y/N]: ").lower().strip()
             if choice != 'y':
                 return
         self.running = False
@@ -70,7 +70,7 @@ class Frontend:
     def load(self, filename):
         if self.manager.deltas:
             choice = input(
-                "Uncommited changes present! Are you sure you want to overwrite current state? [y/N]: ").lower().strip()
+                "Uncommitted changes present! Are you sure you want to overwrite current state? [y/N]: ").lower().strip()
             if choice != 'y':
                 return
         self.manager.load(filename)
