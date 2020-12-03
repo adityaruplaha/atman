@@ -19,12 +19,12 @@ data_source_parameters = {
 }
 
 m = attendance_manager.manager.Manager(
-    connection_parameters, data_source_parameters)
+    connection_parameters, data_source_parameters) # manager object created
 m.refresh_classes()
 
-f = attendance_manager.frontend.Frontend(m)
+f = attendance_manager.frontend.Frontend(m) # frontend object created
 
-while f.running:
+while f.running: # by default running = True
     try:
         f.exec()
     except KeyboardInterrupt:

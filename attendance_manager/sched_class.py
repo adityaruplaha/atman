@@ -3,7 +3,7 @@ import datetime
 
 class SchedClass:
     r"""
-    Structure of a typical SchedClass string:
+    Structure of a typical SchedClass class_id:
 
         2020-11-04_phy2_ad1
         \________/ \_/^ \_/
@@ -15,8 +15,8 @@ class SchedClass:
     Subject modifiers and class identifiers are OPTIONAL.
     """
 
-    def __init__(self, sched_class):
-        L = sched_class.split('_')
+    def __init__(self, class_id):
+        L = class_id.split('_')
         self.date = datetime.date.fromisoformat(L[0])
         self.subject = L[1].strip('1234567890')
         self.subject_modifier = int(

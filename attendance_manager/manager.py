@@ -49,13 +49,14 @@ class Manager:
         self.db.rollback()
         return ReturnCode.SUCCESS
 
+    def add_class(self, class_id) -> ReturnCode:
+        rt_code =  ReturnCode.SUCCESS if self.db.add_column(self.attendance_table, class_id, ['BOOLEAN', 'NULL']) else ReturnCode.SQL_ERROR
+        self.refresh_classes()
+        return rt_code
+
     def refresh_classes(self) -> None:
-        cursor = self.db.db_internal.cursor()
-        cursor.execute(f"SELECT * FROM `{self.attendance_table}`")
-        self.classes = list(cursor.column_names)
+        self.classes = self.db.column_names(self.attendance_table)
         self.classes.remove("Name")
-        # Result set is not being used but must must be fetched to keep Python happy.
-        cursor.fetchall()
 
     def save(self, filename) -> ReturnCode:
         import json
@@ -125,7 +126,7 @@ class Manager:
         for name, attendance in cursor.fetchall():
             if apply_deltas:
                 matched_deltas = [r for r in self.db.deltas if r[0]
-                           == sched_cls and r[1] == name]
+                                  == sched_cls and r[1] == name]
                 if matched_deltas:
                     attendance = matched_deltas[-1][2]
             L.append((name, attendance))

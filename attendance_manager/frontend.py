@@ -8,7 +8,7 @@ class Frontend:
     def __init__(self, manager: Manager):
         self.running = True
         self.manager = manager
-        self.sched_class = None
+        self.current_class_id = None
 
     def quit(self):
         if self.manager.has_pending_deltas():
@@ -45,26 +45,49 @@ class Frontend:
 
     def list_deltas(self):
         print("Changes:")
-        for sched_class, name, status in self.manager.deltas():
+        for class_id, name, status in self.manager.deltas():
             if status == None:
                 status = "NULL"
             elif status:
                 status = "PRESENT"
             else:
                 status = "ABSENT"
-            print(f"{name} => {sched_class} [{status}]")
+            print(f"{name} => {class_id} [{status}]")
 
-    def set_class(self, sched_class):
+    def set_class(self, class_id):
         if not self.manager.classes:
             self.manager.refresh_classes()
-        if sched_class in self.manager.classes:
-            self.sched_class = sched_class
+        if class_id in self.manager.classes:
+            self.current_class_id = class_id
         else:
-            print("Invalid class.")
+            print("Invalid class ID. Use `newclass` to create a new class.")
+
+    def new_class(self, class_id):
+        # Check if SchedClass is well-formed.
+        if not class_id == str(SchedClass(class_id)):
+            print("The specified class ID doesn't seem to be in a valid format.")
+        if class_id in self.manager.classes:
+            print("The class with specified ID already exists.")
+        else:
+            rt_code = self.manager.add_class(class_id)
+            if rt_code == ReturnCode.SQL_ERROR:
+                print(
+                    "ERR: Couldn't create class. There was an SQL error. Try again later.")
+                print(
+                    "     If the problem persists, check your database connection.")
+            elif rt_code == ReturnCode.SUCCESS:
+                print(f"Created empty class with ID '{class_id}'.")
+                choice = input(
+                    "Switch to newly created class? [y/N]: ").lower().strip()
+                if choice == 'y':
+                    self.set_class(class_id)
+            else:
+                # Do not cover this in flowchart/writeup.
+                print("Something really unexpected happened. File a bug report. Error Code: IMP_RET-add_class")
 
     def save(self, filename=None):
         if not filename:
-            filename = f"{self.sched_class}_{datetime.datetime.now().isoformat()}.json"
+            filename = f"{self.current_class_id}_{datetime.datetime.now().isoformat()}.json"
         self.manager.save(filename)
 
     def load(self, filename):
@@ -80,49 +103,49 @@ class Frontend:
         Integrates directly with a CSV generated using this Chrome extension:
         https://chrome.google.com/webstore/detail/google-meet-attendance-co/hjjeaaibilndjeabckakaknlcbblcmbc
         """
-        if not self.sched_class:
-            print("Select a class first.")
+        if not self.current_class_id:
+            print("Select a class first. Use `class` to select a class by ID.")
             return
         import csv
         with open(filename) as f:
             names = [''.join(row).strip() for row in csv.reader(f)][4:]
             for name in names:
                 print(f"Marking '{name}' present...")
-                self.manager.mark(name, True)
+                self.manager.mark(name, self.current_class_id, True)
             print(f"Marking all unmarked students absent...")
-            self.manager.mark('else', False)
+            self.manager.mark('else', self.current_class_id, False)
 
     def mark(self, name_partial, status=None):
         # `matched_names` is returned only if `ReturnCode.MULTIPLE_MATCH` is returned.
         # Otherwise, None is returned.
-        if not self.sched_class:
-            print("Select a class first.")
+        if not self.current_class_id:
+            print("Select a class first. Use `class` to select a class by ID.")
             return
         rt_code, matched_names = self.manager.mark(
-            name_partial, self.sched_class, status)
+            name_partial, self.current_class_id, status)
         if rt_code == ReturnCode.EMPTY_INPUT:
             print("Provide a name.")
         elif rt_code == ReturnCode.MULTIPLE_MATCH:
-            subject = SchedClass(self.sched_class).subject
+            subject = SchedClass(self.current_class_id).subject
             print(
                 f"WARN: '{name_partial}' matched multiple students studying '{subject}'.")
             print(matched_names)
         elif rt_code == ReturnCode.NO_MATCH:
-            subject = SchedClass(self.sched_class).subject
+            subject = SchedClass(self.current_class_id).subject
             print(
                 f"WARN: '{name_partial}' didn't match any student studying '{subject}'.")
         elif rt_code == ReturnCode.UNDEFINED_CLASS:
             print(
-                "ERR: The current scheduled class doesn't exist in database.")
+                "ERR: The current class ID doesn't exist in database.")
 
     def state(self, apply_deltas=False):
-        if not self.sched_class:
-            print("Select a class first.")
+        if not self.current_class_id:
+            print("Select a class first. Use `class` to select a class by ID.")
             return
         total = 0
         present = 0
         absent = 0
-        for name, attendance in self.manager.class_state(self.sched_class, apply_deltas=apply_deltas):
+        for name, attendance in self.manager.class_state(self.current_class_id, apply_deltas=apply_deltas):
             if attendance == None:
                 attendance = "NULL"
             elif attendance:
@@ -142,7 +165,7 @@ class Frontend:
                 f"Absent: {absent}/{total} [{round(absent/total*100, 2)}%]")
 
     def exec(self):
-        cmd = input(f"{self.sched_class}> ").strip()
+        cmd = input(f"{self.current_class_id}> ").strip()
         splitted = cmd.split(' ')
         command = splitted[0].strip()
         args_str = ' '.join(splitted[1:]).strip()
@@ -156,6 +179,8 @@ class Frontend:
             self.list_deltas()
         elif command == 'class':
             self.set_class(args_str)
+        elif command == 'newclass':
+            self.new_class(args_str)
         elif command == 'state':
             self.state(apply_deltas=False)
         elif command == 'newstate':
