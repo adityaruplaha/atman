@@ -1,7 +1,7 @@
 import datetime
 import enum
 
-from attendance_manager.database import DB
+from attendance_manager.database import DBInterface
 from attendance_manager.sched_class import SchedClass
 
 
@@ -25,7 +25,7 @@ class ReturnCode(enum.Enum):
 class Manager:
     def __init__(self, connection_parameters, data_source_parameters):
         self.running = True
-        self.db = DB(connection_parameters,
+        self.db = DBInterface(connection_parameters,
                      data_source_parameters['database_name'])
         self.subject_table = data_source_parameters['subject_table']
         self.attendance_table = data_source_parameters['attendance_table']
@@ -41,7 +41,7 @@ class Manager:
     def commit(self) -> ReturnCode:
         if not self.has_pending_deltas():
             return ReturnCode.NULL_ACTION
-        return ReturnCode.SUCCESS if self.db.commit() else ReturnCode.SQL_ERROR
+        return ReturnCode.SUCCESS if self.db.commit(self.attendance_table) else ReturnCode.SQL_ERROR
 
     def rollback(self) -> ReturnCode:
         if not self.has_pending_deltas():
@@ -134,11 +134,10 @@ class Manager:
 
     def name_list(self, subject) -> list:
         if subject not in self.loaded_name_lists.keys():
-            cursor = self.db.db_internal.cursor()
-            cursor.execute(
+            is_ok, result_set = self.db.execute_sql(
                 f"SELECT Name FROM `{self.subject_table}` WHERE Subjects LIKE %s", (
                     '%'+subject+'%',)
             )
-            self.loaded_name_lists[subject] = [row[0]
-                                               for row in cursor.fetchall()]
+            # SWLIMIT: Warn caller of possible error?
+            self.loaded_name_lists[subject] = [row[0] for row in result_set] if is_ok else []
         return self.loaded_name_lists[subject]
