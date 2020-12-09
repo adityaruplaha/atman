@@ -26,6 +26,14 @@ m.refresh_classes()
 
 f = attendance_manager.frontend.Frontend(m) # frontend object created
 
+print()
+print()
+print("Attendance Manager")
+print("------------------")
+print()
+print("Type 'help' for usage guide.")
+print()
+
 while f.running: # by default running = True
     try:
         f.exec()

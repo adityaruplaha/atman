@@ -1,0 +1,69 @@
+Attendance Manager -- USAGE GUIDE
+
+current_class> <command> [args]
+
+Help Page:
+    help
+        Show this help text.
+
+Database Commands:
+    commit
+        Commit all pending changes to database.
+        No changes are communicated to the SQL server before this.
+    list
+        List pending changes.
+    rollback
+        Rollback all pending changes.
+
+Class Commands:
+    class <class_id>
+        Switch current selected class to 'class_id'.
+    newclass <class_id>
+        Create new class with ID 'class_id'. Allows to switch to it directly.
+
+State Commands:
+    state
+        Show class state (Name, Attendance) of current class.
+        DOES NOT ACCOUNT FOR PENDING CHANGES.
+    newstate
+        Show class state (Name, Attendance) of current class AFTER applying
+        all pending changes.
+
+File-based Commands:
+    save [filename]
+        Save all pending changes to a JSON file, specified by 'filename'.
+        If 'filename' is not provided, it is by default:
+            <class_id>_<ISO timestamp>.json
+        where 'class_id' represents the currently selected class.
+        Does NOT rollback the pending changes written to file.
+    load <filename>
+        Load pending changes from a file created using 'save'.
+        Overwrites previously pending changes.
+
+Attendance Handling Commands:
+    Name Searching Algorithm:
+        The following are taken into consideration in serial order. 
+        If the previous case does not match, the next case is applied.
+        The entire algorithm is case-insensitive.
+        Special Keywords:
+            'all'  -> all students in name list
+            'else' -> all students in name list who haven't been marked yet.
+                      Pending changes are taken into account during this search.
+        Startswith Search:
+            Search for all students in list whose name starts with 'name_partial'.
+        Contains Search:
+            Search for all students in list whose name contains 'name_partial'.
+        If no match is found, a warning is issued.
+
+        If multiple matches are found, then the action is performed on all, and a
+        warning is issued, with which the matches are mentioned.
+
+    import-autocsv <csv_filename>
+        Integrates directly with a CSV generated using this Chrome extension:
+        https://chrome.google.com/webstore/detail/google-meet-attendance-co/hjjeaaibilndjeabckakaknlcbblcmbc
+    null <name_partial>
+        Search for 'name_partial' and blank out their attendance.
+    present <name_partial>
+        Search for 'name_partial' and mark them present.
+    absent <name_partial>
+        Search for 'name_partial' and mark them absent.

@@ -205,18 +205,30 @@ class Frontend:
             print(
                 f"Absent: {absent}/{total} [{round(absent/total*100, 2)}%]")
 
+    def help(self):
+        from pypager.source import FileSource
+        from pypager.pager import Pager
+        import os
+        root_path = os.path.dirname(os.path.abspath(__file__))
+        source = FileSource(filename=root_path+"/help.txt")
+        p = Pager()
+        p.add_source(source)
+        p.run()
+
     def exec(self):
         cmd = input(f"{self.current_class_id}> ").strip()
         splitted = cmd.split(' ')
         command = splitted[0].strip()
         args_str = ' '.join(splitted[1:]).strip()
-        if command == 'quit':
+        if command == 'help':
+            self.help()
+        elif command == 'quit':
             self.quit()
         elif command == 'commit':
             self.commit()
         elif command == 'rollback':
             self.rollback()
-        elif command == 'deltas':
+        elif command == 'list':
             self.list_deltas()
         elif command == 'class':
             self.set_class(args_str)
