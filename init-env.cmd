@@ -1,3 +1,4 @@
+echo "It is strongly recommended to use this software on a Linux machine."
 echo "Creating Virtual Environment... (this might take a while)"
 python -m --clear venv ./env
 echo "Activating Virtual Environment..."

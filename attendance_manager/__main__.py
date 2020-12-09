@@ -1,8 +1,10 @@
+import getpass
+
 import attendance_manager.manager
 import attendance_manager.frontend
 
 username = input("Enter database username: ")
-password = input("Enter database password: ")
+password = getpass.getpass(prompt="Enter database password: ")
 database_name = input("Enter database name: ")
 
 connection_parameters = {

@@ -1,4 +1,4 @@
-import datetime
+import datetime, readline
 
 from attendance_manager.manager import Manager, ReturnCode
 from attendance_manager.sched_class import SchedClass
@@ -98,7 +98,8 @@ class Frontend:
                 return
         self.manager.load(filename)
 
-    def import_autocsv(self, filename):
+    # SWLIMIT: This doesn't actually check the format of the CSV.
+    def import_autocsv(self, filename, realname_lambda=lambda x: x):
         """
         Integrates directly with a CSV generated using this Chrome extension:
         https://chrome.google.com/webstore/detail/google-meet-attendance-co/hjjeaaibilndjeabckakaknlcbblcmbc
@@ -108,10 +109,45 @@ class Frontend:
             return
         import csv
         with open(filename) as f:
-            names = [''.join(row).strip() for row in csv.reader(f)][4:]
+            rows = list(csv.reader(f))
+            # 1st column contains the names.
+            names = [row[0].strip() for row in rows]
+            if len(rows[0]) == 1:
+                # This is not TIME-WISE ATTENDANCE MONITORING.
+                # First 4 rows are metadata. Discard.
+                names = names[4:]
+            elif len(rows[0]) > 1:
+                # This is TIME-WISE ATTENDANCE MONITORING.
+                # First 6 rows are metadata. Discard.
+                names = names[6:]
+            else:
+                # This code will never be reached.
+                print("ERR: Unknown CSV format.")
+                return
+            # Remove all empty entries
+            while names.count(''):
+                names.remove('')
             for name in names:
-                print(f"Marking '{name}' present...")
-                self.manager.mark(name, self.current_class_id, True)
+                name = realname_lambda(name)
+                print(f"Marking '{name}' present...", end=' ')
+                rt_code, matched_names = self.manager.mark(name, self.current_class_id, True)
+                if rt_code == ReturnCode.MULTIPLE_MATCH:
+                    subject = SchedClass(self.current_class_id).subject
+                    print("DONE.")
+                    print(
+                        f"WARN: '{name}' matched multiple students studying '{subject}'.")
+                    print(matched_names)
+                elif rt_code == ReturnCode.NO_MATCH:
+                    print("FAILED.")
+                    subject = SchedClass(self.current_class_id).subject
+                    print(
+                        f"WARN: '{name}' didn't match any student studying '{subject}'.")
+                elif rt_code == ReturnCode.UNDEFINED_CLASS:
+                    print("FAILED.")
+                    print(
+                        "ERR: The current class ID doesn't exist in database.")
+                else:
+                    print("DONE.")
             print(f"Marking all unmarked students absent...")
             self.manager.mark('else', self.current_class_id, False)
 
@@ -139,15 +175,18 @@ class Frontend:
                 "ERR: The current class ID doesn't exist in database.")
 
     def state(self, apply_deltas=False):
+        import prettytable
         if not self.current_class_id:
             print("Select a class first. Use `class` to select a class by ID.")
             return
         total = 0
         present = 0
         absent = 0
+        p = prettytable.PrettyTable()
+        p.field_names = ["NAME", "ATTENDANCE"]
         for name, attendance in self.manager.class_state(self.current_class_id, apply_deltas=apply_deltas):
             if attendance == None:
-                attendance = "NULL"
+                attendance = ""
             elif attendance:
                 attendance = "PRESENT"
                 total += 1
@@ -156,9 +195,11 @@ class Frontend:
                 attendance = "ABSENT"
                 total += 1
                 absent += 1
-            print(f"{name} => {attendance}")
+            p.add_row([name, attendance])
+            p.align["NAME"] = 'l'
+            p.align["ATTENDANCE"] = 'r'
+        print(p)
         if total:
-            print("-"*30)
             print(
                 f"Present: {present}/{total} [{round(present/total*100, 2)}%]")
             print(
@@ -190,7 +231,9 @@ class Frontend:
         elif command == 'load':
             self.load(args_str)
         elif command == 'import-autocsv':
-            self.import_autocsv(args_str)
+            import re
+            # This lambda removes 'SC[section]-[roll no] ' from the name.
+            self.import_autocsv(args_str, lambda name: re.sub(r'SC[\w]-[\d]+\s', '', name))
         elif command == 'null':
             self.mark(args_str, None)
         elif command == 'present':

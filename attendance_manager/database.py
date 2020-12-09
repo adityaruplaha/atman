@@ -70,7 +70,7 @@ class DBInterface:
         # SWLIMIT: Errors are discarded. Maybe shouldn't be?
         return self.execute_sql(sql)[0]
 
-    def execute_sql(self, stmt, data=None) -> tuple(2):
+    def execute_sql(self, stmt, data=None) -> tuple:
         '''
         Execute any SQL statement and return a tuple:
             1. STATUS(bool): False if error occurs and True otherwise.

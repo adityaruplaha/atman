@@ -26,13 +26,13 @@ class SchedClass:
         else:
             self.class_identifier = None
 
-    def __toString__(self):
-        return '_'.join([
+    def __str__(self):
+        components = [
             self.date.isoformat(), self.subject +
             str(self.subject_modifier
                 if self.subject_modifier != None
-                else ''),
-            (self.class_identifier
-                if self.class_identifier != None
                 else '')
-        ])
+        ]
+        if self.class_identifier != None:
+            components.append(self.class_identifier)
+        return '_'.join(components)
