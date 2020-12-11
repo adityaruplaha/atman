@@ -1,9 +1,9 @@
 import getpass
 
-import attendance_manager.manager
-import attendance_manager.frontend
+import atman.manager
+import atman.frontend
 
-from attendance_manager.input_handler import init
+import colorama
 
 username = input("Enter database username: ")
 password = getpass.getpass(prompt="Enter database password: ")
@@ -22,18 +22,18 @@ data_source_parameters = {
     'attendance_table': "attendance"
 }
 
-init(autoreset=True)
+colorama.init(autoreset=True)
 
-m = attendance_manager.manager.Manager(
+m = atman.manager.Manager(
     connection_parameters, data_source_parameters) # manager object created
 m.refresh_classes()
 
-f = attendance_manager.frontend.Frontend(m) # frontend object created
+f = atman.frontend.Frontend(m) # frontend object created
 
 print()
 print()
-print("Attendance Manager")
-print("------------------")
+print("AtMan")
+print("-----")
 print()
 print("Type 'help' for usage guide.")
 print()

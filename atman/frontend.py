@@ -1,8 +1,8 @@
 import datetime, readline
 
-from attendance_manager.manager import Manager, ReturnCode
-from attendance_manager.sched_class import SchedClass
-from attendance_manager.input_handler import prompt, error, warning, success
+from atman.manager import Manager, ReturnCode
+from atman.sched_class import SchedClass
+from atman.io_handler import prompt, error, warning, success, page_text_from_file
 
 
 class Frontend:
@@ -207,14 +207,10 @@ class Frontend:
                 f"Absent: {absent}/{total} [{round(absent/total*100, 2)}%]")
 
     def help(self):
-        from pypager.source import FileSource
-        from pypager.pager import Pager
-        import os
-        root_path = os.path.dirname(os.path.abspath(__file__))
-        source = FileSource(filename=root_path+"/help.txt")
-        p = Pager()
-        p.add_source(source)
-        p.run()
+        page_text_from_file("help.txt")
+
+    def credits(self):
+        page_text_from_file("credits.txt")
 
     def exec(self):
         cmd = prompt(f"{self.current_class_id}> ").strip()
@@ -223,6 +219,8 @@ class Frontend:
         args_str = ' '.join(splitted[1:]).strip()
         if command == 'help':
             self.help()
+        elif command == 'credits':
+            self.credits()
         elif command == 'quit':
             self.quit()
         elif command == 'commit':

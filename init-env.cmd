@@ -8,4 +8,4 @@ echo "Virtual Environment active."
 echo "Installing requirements..."
 pip install --use-feature=2020-resolver -r requirements.txt
 echo "Done. Run './env/Scripts/activate.bat' to activate Virtual Environment."
-echo "Run 'python -m attendance_manager' in Virtual Environment to run program."
+echo "Run 'python -m atman' in Virtual Environment to run program."

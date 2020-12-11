@@ -1,10 +1,12 @@
-Attendance Manager -- USAGE GUIDE
+AtMan -- USAGE GUIDE
 
 current_class> <command> [args]
 
 Help Page:
     help
         Show this help text.
+    credits
+        Show credits.
 
 Database Commands:
     commit

@@ -1,8 +1,8 @@
 import datetime
 import enum
 
-from attendance_manager.database import DBInterface
-from attendance_manager.sched_class import SchedClass
+from atman.database import DBInterface
+from atman.sched_class import SchedClass
 
 
 class ReturnCode(enum.Enum):
