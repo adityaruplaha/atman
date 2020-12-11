@@ -3,6 +3,8 @@ import getpass
 import attendance_manager.manager
 import attendance_manager.frontend
 
+from attendance_manager.input_handler import init
+
 username = input("Enter database username: ")
 password = getpass.getpass(prompt="Enter database password: ")
 database_name = input("Enter database name: ")
@@ -19,6 +21,8 @@ data_source_parameters = {
     'subject_table': "academic",
     'attendance_table': "attendance"
 }
+
+init(autoreset=True)
 
 m = attendance_manager.manager.Manager(
     connection_parameters, data_source_parameters) # manager object created

@@ -2,6 +2,7 @@ import datetime, readline
 
 from attendance_manager.manager import Manager, ReturnCode
 from attendance_manager.sched_class import SchedClass
+from attendance_manager.input_handler import prompt, error, warning, success
 
 
 class Frontend:
@@ -12,7 +13,7 @@ class Frontend:
 
     def quit(self):
         if self.manager.has_pending_deltas():
-            choice = input(
+            choice = prompt(
                 "Uncommitted changes present! Are you sure you want to quit? [y/N]: ").lower().strip()
             if choice != 'y':
                 return
@@ -22,26 +23,26 @@ class Frontend:
     def commit(self):
         rt_code = self.manager.commit()
         if rt_code == ReturnCode.SQL_ERROR:
-            print(
+            error(
                 "ERR: There was an SQL error. No changes have been lost. Try again later.")
-            print(
+            error(
                 "     If the problem persists, check your database connection and table layout.")
         elif rt_code == ReturnCode.NULL_ACTION:
-            print("WARN: No changes to commit.")
+            warning("WARN: No changes to commit.")
         elif rt_code == ReturnCode.SUCCESS:
-            print("Successfully committed changes to database.")
+            success("Successfully committed changes to database.")
 
     def rollback(self):
         if self.manager.has_pending_deltas():
-            choice = input(
+            choice = prompt(
                 "Uncommitted changes present! Are you sure you want to rollback? THIS IS IRREVERSIBLE. [y/N]: ").lower().strip()
             if choice != 'y':
                 return
         rt_code = self.manager.rollback()
         if rt_code == ReturnCode.NULL_ACTION:
-            print("WARN: No changes to rollback.")
+            warning("WARN: No changes to rollback.")
         elif rt_code == ReturnCode.SUCCESS:
-            print("Successfully rolled back changes.")
+            success("Successfully rolled back changes.")
 
     def list_deltas(self):
         print("Changes:")
@@ -60,30 +61,30 @@ class Frontend:
         if class_id in self.manager.classes:
             self.current_class_id = class_id
         else:
-            print("Invalid class ID. Use `newclass` to create a new class.")
+            warning("Invalid class ID. Use `newclass` to create a new class.")
 
     def new_class(self, class_id):
         # Check if SchedClass is well-formed.
         if not class_id == str(SchedClass(class_id)):
-            print("The specified class ID doesn't seem to be in a valid format.")
+            warning("The specified class ID doesn't seem to be in a valid format.")
         if class_id in self.manager.classes:
-            print("The class with specified ID already exists.")
+            warning("The class with specified ID already exists.")
         else:
             rt_code = self.manager.add_class(class_id)
             if rt_code == ReturnCode.SQL_ERROR:
-                print(
+                error(
                     "ERR: Couldn't create class. There was an SQL error. Try again later.")
-                print(
+                error(
                     "     If the problem persists, check your database connection.")
             elif rt_code == ReturnCode.SUCCESS:
                 print(f"Created empty class with ID '{class_id}'.")
-                choice = input(
+                choice = prompt(
                     "Switch to newly created class? [y/N]: ").lower().strip()
                 if choice == 'y':
                     self.set_class(class_id)
             else:
                 # Do not cover this in flowchart/writeup.
-                print("Something really unexpected happened. File a bug report. Error Code: IMP_RET-add_class")
+                error("Something really unexpected happened. File a bug report. Error Code: IMP_RET-add_class")
 
     def save(self, filename=None):
         if not filename:
@@ -92,7 +93,7 @@ class Frontend:
 
     def load(self, filename):
         if self.manager.deltas:
-            choice = input(
+            choice = prompt(
                 "Uncommitted changes present! Are you sure you want to overwrite current state? [y/N]: ").lower().strip()
             if choice != 'y':
                 return
@@ -133,21 +134,21 @@ class Frontend:
                 rt_code, matched_names = self.manager.mark(name, self.current_class_id, True)
                 if rt_code == ReturnCode.MULTIPLE_MATCH:
                     subject = SchedClass(self.current_class_id).subject
-                    print("DONE.")
-                    print(
+                    success("DONE.")
+                    warning(
                         f"WARN: '{name}' matched multiple students studying '{subject}'.")
                     print(matched_names)
                 elif rt_code == ReturnCode.NO_MATCH:
-                    print("FAILED.")
+                    error("FAILED.")
                     subject = SchedClass(self.current_class_id).subject
-                    print(
+                    warning(
                         f"WARN: '{name}' didn't match any student studying '{subject}'.")
                 elif rt_code == ReturnCode.UNDEFINED_CLASS:
-                    print("FAILED.")
-                    print(
+                    error("FAILED.")
+                    error(
                         "ERR: The current class ID doesn't exist in database.")
                 else:
-                    print("DONE.")
+                    success("DONE.")
             print(f"Marking all unmarked students absent...")
             self.manager.mark('else', self.current_class_id, False)
 
@@ -155,29 +156,29 @@ class Frontend:
         # `matched_names` is returned only if `ReturnCode.MULTIPLE_MATCH` is returned.
         # Otherwise, None is returned.
         if not self.current_class_id:
-            print("Select a class first. Use `class` to select a class by ID.")
+            warning("Select a class first. Use `class` to select a class by ID.")
             return
         rt_code, matched_names = self.manager.mark(
             name_partial, self.current_class_id, status)
         if rt_code == ReturnCode.EMPTY_INPUT:
-            print("Provide a name.")
+            warning("Provide a name.")
         elif rt_code == ReturnCode.MULTIPLE_MATCH:
             subject = SchedClass(self.current_class_id).subject
-            print(
+            warning(
                 f"WARN: '{name_partial}' matched multiple students studying '{subject}'.")
             print(matched_names)
         elif rt_code == ReturnCode.NO_MATCH:
             subject = SchedClass(self.current_class_id).subject
-            print(
+            warning(
                 f"WARN: '{name_partial}' didn't match any student studying '{subject}'.")
         elif rt_code == ReturnCode.UNDEFINED_CLASS:
-            print(
+            error(
                 "ERR: The current class ID doesn't exist in database.")
 
     def state(self, apply_deltas=False):
         import prettytable
         if not self.current_class_id:
-            print("Select a class first. Use `class` to select a class by ID.")
+            warning("Select a class first. Use `class` to select a class by ID.")
             return
         total = 0
         present = 0
@@ -216,7 +217,7 @@ class Frontend:
         p.run()
 
     def exec(self):
-        cmd = input(f"{self.current_class_id}> ").strip()
+        cmd = prompt(f"{self.current_class_id}> ").strip()
         splitted = cmd.split(' ')
         command = splitted[0].strip()
         args_str = ' '.join(splitted[1:]).strip()
