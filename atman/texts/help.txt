@@ -2,11 +2,14 @@ AtMan -- USAGE GUIDE
 
 current_class> <command> [args]
 
-Help Page:
+Basic Commands:
     help
-        Show this help text.
+        Show this help page.
+    quit
+        Exit the application.
+        Also triggered by a SIGINT or an EOF.
     credits
-        Show credits.
+        Show credits page.
 
 Database Commands:
     commit
