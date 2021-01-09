@@ -1,0 +1,245 @@
+\hypertarget{classatman_1_1manager_1_1Manager}{}\doxysection{atman.\+manager.\+Manager Class Reference}
+\label{classatman_1_1manager_1_1Manager}\index{atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a3e09146c8c7fc975a498e74543daa364}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, connection\+\_\+parameters, data\+\_\+source\+\_\+parameters)
+\item 
+bool \mbox{\hyperlink{classatman_1_1manager_1_1Manager_aed29a58ed1d9e3afa04ab9078a9bcc25}{has\+\_\+pending\+\_\+deltas}} (self)
+\item 
+list \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a569972c76529bc03d8c0d309943d595e}{deltas}} (self)
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a58c2ced9d35d18e35145706070860127}{commit}} (self)
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} \mbox{\hyperlink{classatman_1_1manager_1_1Manager_af14f1b6678484b8f3041776f5e534706}{rollback}} (self)
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a4165f5a90c9a45c6bdff0ea70fe7bc39}{add\+\_\+class}} (self, class\+\_\+id)
+\item 
+None \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a2d47c6b12c0d25ba13c7449a4c43b161}{refresh\+\_\+classes}} (self)
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} \mbox{\hyperlink{classatman_1_1manager_1_1Manager_ac474a3ba81f5a6c3148ed27dad4932aa}{save}} (self, filename)
+\item 
+tuple \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a3e3bce058f5971dafd7107f150d9ab4c}{load}} (self, filename)
+\item 
+tuple \mbox{\hyperlink{classatman_1_1manager_1_1Manager_ac337e8f29c44b52f88fe184befbcd878}{mark}} (self, name\+\_\+partial, sched\+\_\+cls, status)
+\item 
+list \mbox{\hyperlink{classatman_1_1manager_1_1Manager_ac89e2d3b281adc96296f60a1849acf64}{class\+\_\+state}} (self, sched\+\_\+cls, apply\+\_\+deltas=False)
+\item 
+list \mbox{\hyperlink{classatman_1_1manager_1_1Manager_a85d39d8fb0d94a64e8ffe244b6f6f100}{name\+\_\+list}} (self, subject)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_aa74d847ac809aad0c8240783cc330055}{running}}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_ac730651b5479d5f0d4666de7ecde5650}{db}}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_ab805b878603ada8a7820baf949ba381b}{subject\+\_\+table}}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_a0328bf2513c71712c9e6ea2463f64703}{attendance\+\_\+table}}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_af5d6418b483a8e1d46605ff8197e9605}{loaded\+\_\+name\+\_\+lists}}
+\item 
+\mbox{\hyperlink{classatman_1_1manager_1_1Manager_a7a7c8b8f95abd3620da283dfdd2e1717}{classes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 25 of file manager.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a3e09146c8c7fc975a498e74543daa364}\label{classatman_1_1manager_1_1Manager_a3e09146c8c7fc975a498e74543daa364}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def atman.\+manager.\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{connection\+\_\+parameters,  }\item[{}]{data\+\_\+source\+\_\+parameters }\end{DoxyParamCaption})}
+
+
+
+Definition at line 26 of file manager.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a4165f5a90c9a45c6bdff0ea70fe7bc39}\label{classatman_1_1manager_1_1Manager_a4165f5a90c9a45c6bdff0ea70fe7bc39}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!add\_class@{add\_class}}
+\index{add\_class@{add\_class}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{add\_class()}{add\_class()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} atman.\+manager.\+Manager.\+add\+\_\+class (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{class\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Definition at line 52 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_ac89e2d3b281adc96296f60a1849acf64}\label{classatman_1_1manager_1_1Manager_ac89e2d3b281adc96296f60a1849acf64}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!class\_state@{class\_state}}
+\index{class\_state@{class\_state}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{class\_state()}{class\_state()}}
+{\footnotesize\ttfamily  list atman.\+manager.\+Manager.\+class\+\_\+state (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sched\+\_\+cls,  }\item[{}]{apply\+\_\+deltas = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 119 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a58c2ced9d35d18e35145706070860127}\label{classatman_1_1manager_1_1Manager_a58c2ced9d35d18e35145706070860127}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!commit@{commit}}
+\index{commit@{commit}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} atman.\+manager.\+Manager.\+commit (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a569972c76529bc03d8c0d309943d595e}\label{classatman_1_1manager_1_1Manager_a569972c76529bc03d8c0d309943d595e}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!deltas@{deltas}}
+\index{deltas@{deltas}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{deltas()}{deltas()}}
+{\footnotesize\ttfamily  list atman.\+manager.\+Manager.\+deltas (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 38 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_aed29a58ed1d9e3afa04ab9078a9bcc25}\label{classatman_1_1manager_1_1Manager_aed29a58ed1d9e3afa04ab9078a9bcc25}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!has\_pending\_deltas@{has\_pending\_deltas}}
+\index{has\_pending\_deltas@{has\_pending\_deltas}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{has\_pending\_deltas()}{has\_pending\_deltas()}}
+{\footnotesize\ttfamily  bool atman.\+manager.\+Manager.\+has\+\_\+pending\+\_\+deltas (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 35 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a3e3bce058f5971dafd7107f150d9ab4c}\label{classatman_1_1manager_1_1Manager_a3e3bce058f5971dafd7107f150d9ab4c}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!load@{load}}
+\index{load@{load}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily  tuple atman.\+manager.\+Manager.\+load (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line 73 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_ac337e8f29c44b52f88fe184befbcd878}\label{classatman_1_1manager_1_1Manager_ac337e8f29c44b52f88fe184befbcd878}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!mark@{mark}}
+\index{mark@{mark}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{mark()}{mark()}}
+{\footnotesize\ttfamily  tuple atman.\+manager.\+Manager.\+mark (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name\+\_\+partial,  }\item[{}]{sched\+\_\+cls,  }\item[{}]{status }\end{DoxyParamCaption})}
+
+
+
+Definition at line 83 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a85d39d8fb0d94a64e8ffe244b6f6f100}\label{classatman_1_1manager_1_1Manager_a85d39d8fb0d94a64e8ffe244b6f6f100}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!name\_list@{name\_list}}
+\index{name\_list@{name\_list}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{name\_list()}{name\_list()}}
+{\footnotesize\ttfamily  list atman.\+manager.\+Manager.\+name\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{subject }\end{DoxyParamCaption})}
+
+
+
+Definition at line 135 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a2d47c6b12c0d25ba13c7449a4c43b161}\label{classatman_1_1manager_1_1Manager_a2d47c6b12c0d25ba13c7449a4c43b161}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!refresh\_classes@{refresh\_classes}}
+\index{refresh\_classes@{refresh\_classes}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{refresh\_classes()}{refresh\_classes()}}
+{\footnotesize\ttfamily  None atman.\+manager.\+Manager.\+refresh\+\_\+classes (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 57 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_af14f1b6678484b8f3041776f5e534706}\label{classatman_1_1manager_1_1Manager_af14f1b6678484b8f3041776f5e534706}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!rollback@{rollback}}
+\index{rollback@{rollback}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} atman.\+manager.\+Manager.\+rollback (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_ac474a3ba81f5a6c3148ed27dad4932aa}\label{classatman_1_1manager_1_1Manager_ac474a3ba81f5a6c3148ed27dad4932aa}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!save@{save}}
+\index{save@{save}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classatman_1_1manager_1_1ReturnCode}{Return\+Code}} atman.\+manager.\+Manager.\+save (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line 61 of file manager.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a0328bf2513c71712c9e6ea2463f64703}\label{classatman_1_1manager_1_1Manager_a0328bf2513c71712c9e6ea2463f64703}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!attendance\_table@{attendance\_table}}
+\index{attendance\_table@{attendance\_table}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{attendance\_table}{attendance\_table}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+attendance\+\_\+table}
+
+
+
+Definition at line 31 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_a7a7c8b8f95abd3620da283dfdd2e1717}\label{classatman_1_1manager_1_1Manager_a7a7c8b8f95abd3620da283dfdd2e1717}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!classes@{classes}}
+\index{classes@{classes}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{classes}{classes}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+classes}
+
+
+
+Definition at line 33 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_ac730651b5479d5f0d4666de7ecde5650}\label{classatman_1_1manager_1_1Manager_ac730651b5479d5f0d4666de7ecde5650}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!db@{db}}
+\index{db@{db}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+db}
+
+
+
+Definition at line 28 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_af5d6418b483a8e1d46605ff8197e9605}\label{classatman_1_1manager_1_1Manager_af5d6418b483a8e1d46605ff8197e9605}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!loaded\_name\_lists@{loaded\_name\_lists}}
+\index{loaded\_name\_lists@{loaded\_name\_lists}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{loaded\_name\_lists}{loaded\_name\_lists}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+loaded\+\_\+name\+\_\+lists}
+
+
+
+Definition at line 32 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_aa74d847ac809aad0c8240783cc330055}\label{classatman_1_1manager_1_1Manager_aa74d847ac809aad0c8240783cc330055}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!running@{running}}
+\index{running@{running}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+running}
+
+
+
+Definition at line 27 of file manager.\+py.
+
+\mbox{\Hypertarget{classatman_1_1manager_1_1Manager_ab805b878603ada8a7820baf949ba381b}\label{classatman_1_1manager_1_1Manager_ab805b878603ada8a7820baf949ba381b}} 
+\index{atman.manager.Manager@{atman.manager.Manager}!subject\_table@{subject\_table}}
+\index{subject\_table@{subject\_table}!atman.manager.Manager@{atman.manager.Manager}}
+\doxysubsubsection{\texorpdfstring{subject\_table}{subject\_table}}
+{\footnotesize\ttfamily atman.\+manager.\+Manager.\+subject\+\_\+table}
+
+
+
+Definition at line 30 of file manager.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+atman/\mbox{\hyperlink{manager_8py}{manager.\+py}}\end{DoxyCompactItemize}

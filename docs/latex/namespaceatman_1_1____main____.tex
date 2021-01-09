@@ -1,0 +1,129 @@
+\hypertarget{namespaceatman_1_1____main____}{}\doxysection{atman.\+\_\+\+\_\+main\+\_\+\+\_\+ Namespace Reference}
+\label{namespaceatman_1_1____main____}\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____abca86f0251e1d6378e9d72e62b444e4d}{username}} = input(\char`\"{}Enter database username\+: \char`\"{})
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____a7266ec9dc12f7b4ec0509e446427d102}{password}} = getpass.\+getpass(prompt=\char`\"{}Enter database password\+: \char`\"{})
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____aab99d78fd31fb65e8d70a92fcae876ff}{database\+\_\+name}} = input(\char`\"{}Enter database name\+: \char`\"{})
+\item 
+dictionary \mbox{\hyperlink{namespaceatman_1_1____main_____a40275a580a28199ea2ff370c40f90fa7}{connection\+\_\+parameters}}
+\item 
+dictionary \mbox{\hyperlink{namespaceatman_1_1____main_____afed8d7401d44e8e57f20783458d26e11}{data\+\_\+source\+\_\+parameters}}
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____ad533d0cad019beaa7f86709d01ea6092}{autoreset}}
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____a44e25487a6b08aab61bb707a2a803843}{m}}
+\item 
+\mbox{\hyperlink{namespaceatman_1_1____main_____a697bca46c4847b87a0c87e8c59197b7c}{f}} = \mbox{\hyperlink{classatman_1_1frontend_1_1Frontend}{atman.\+frontend.\+Frontend}}(\mbox{\hyperlink{namespaceatman_1_1____main_____a44e25487a6b08aab61bb707a2a803843}{m}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceatman_1_1____main_____ad533d0cad019beaa7f86709d01ea6092}\label{namespaceatman_1_1____main_____ad533d0cad019beaa7f86709d01ea6092}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!autoreset@{autoreset}}
+\index{autoreset@{autoreset}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{autoreset}{autoreset}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+autoreset}
+
+
+
+Definition at line 25 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____a40275a580a28199ea2ff370c40f90fa7}\label{namespaceatman_1_1____main_____a40275a580a28199ea2ff370c40f90fa7}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!connection\_parameters@{connection\_parameters}}
+\index{connection\_parameters@{connection\_parameters}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{connection\_parameters}{connection\_parameters}}
+{\footnotesize\ttfamily dictionary atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+connection\+\_\+parameters}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  \{}
+\DoxyCodeLine{2     \textcolor{stringliteral}{'host'}: \textcolor{stringliteral}{"{}localhost"{}},}
+\DoxyCodeLine{3     \textcolor{stringliteral}{'port'}: 3306,}
+\DoxyCodeLine{4     \textcolor{stringliteral}{'user'}: username,}
+\DoxyCodeLine{5     \textcolor{stringliteral}{'passwd'}: password}
+\DoxyCodeLine{6 \}}
+
+\end{DoxyCode}
+
+
+Definition at line 12 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____afed8d7401d44e8e57f20783458d26e11}\label{namespaceatman_1_1____main_____afed8d7401d44e8e57f20783458d26e11}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!data\_source\_parameters@{data\_source\_parameters}}
+\index{data\_source\_parameters@{data\_source\_parameters}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{data\_source\_parameters}{data\_source\_parameters}}
+{\footnotesize\ttfamily dictionary atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+data\+\_\+source\+\_\+parameters}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  \{}
+\DoxyCodeLine{2     \textcolor{stringliteral}{'database\_name'}: database\_name,}
+\DoxyCodeLine{3     \textcolor{stringliteral}{'subject\_table'}: \textcolor{stringliteral}{"{}academic"{}},}
+\DoxyCodeLine{4     \textcolor{stringliteral}{'attendance\_table'}: \textcolor{stringliteral}{"{}attendance"{}}}
+\DoxyCodeLine{5 \}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____aab99d78fd31fb65e8d70a92fcae876ff}\label{namespaceatman_1_1____main_____aab99d78fd31fb65e8d70a92fcae876ff}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!database\_name@{database\_name}}
+\index{database\_name@{database\_name}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{database\_name}{database\_name}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+database\+\_\+name = input(\char`\"{}Enter database name\+: \char`\"{})}
+
+
+
+Definition at line 10 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____a697bca46c4847b87a0c87e8c59197b7c}\label{namespaceatman_1_1____main_____a697bca46c4847b87a0c87e8c59197b7c}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!f@{f}}
+\index{f@{f}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+f = \mbox{\hyperlink{classatman_1_1frontend_1_1Frontend}{atman.\+frontend.\+Frontend}}(\mbox{\hyperlink{namespaceatman_1_1____main_____a44e25487a6b08aab61bb707a2a803843}{m}})}
+
+
+
+Definition at line 31 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____a44e25487a6b08aab61bb707a2a803843}\label{namespaceatman_1_1____main_____a44e25487a6b08aab61bb707a2a803843}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!m@{m}}
+\index{m@{m}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+m}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  \mbox{\hyperlink{classatman_1_1manager_1_1Manager}{atman.manager.Manager}}(}
+\DoxyCodeLine{2     connection\_parameters, data\_source\_parameters)}
+
+\end{DoxyCode}
+
+
+Definition at line 27 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____a7266ec9dc12f7b4ec0509e446427d102}\label{namespaceatman_1_1____main_____a7266ec9dc12f7b4ec0509e446427d102}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!password@{password}}
+\index{password@{password}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+password = getpass.\+getpass(prompt=\char`\"{}Enter database password\+: \char`\"{})}
+
+
+
+Definition at line 9 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+
+\mbox{\Hypertarget{namespaceatman_1_1____main_____abca86f0251e1d6378e9d72e62b444e4d}\label{namespaceatman_1_1____main_____abca86f0251e1d6378e9d72e62b444e4d}} 
+\index{atman.\_\_main\_\_@{atman.\_\_main\_\_}!username@{username}}
+\index{username@{username}!atman.\_\_main\_\_@{atman.\_\_main\_\_}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily atman.\+\_\+\+\_\+main\+\_\+\+\_\+.\+username = input(\char`\"{}Enter database username\+: \char`\"{})}
+
+
+
+Definition at line 8 of file \+\_\+\+\_\+main\+\_\+\+\_\+.\+py.
+

@@ -1,0 +1,148 @@
+\hypertarget{classatman_1_1database_1_1DBInterface}{}\doxysection{atman.\+database.\+D\+B\+Interface Class Reference}
+\label{classatman_1_1database_1_1DBInterface}\index{atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a3a82de485844fc3b37286485fb5f81f4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, connection\+\_\+parameters, database\+\_\+name)
+\item 
+def \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a6f43f7d7fbc8de2375c805562d1b22bc}{push}} (self, class\+\_\+id, name, status=None)
+\item 
+bool \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_afc38d233644f772c6adc8761878475aa}{commit}} (self, attendance\+\_\+table\+\_\+name)
+\item 
+def \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_aca9ecfb1b16b82f2e0d5b4fedb47b40e}{rollback}} (self)
+\item 
+list \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a1962e77014592c96b6d38bbb64243d0f}{column\+\_\+names}} (self, table\+\_\+name)
+\item 
+bool \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a25e4373ce2256902475c60234f7c1ff3}{add\+\_\+column}} (self, table\+\_\+name, column\+\_\+name, attributes=\mbox{[}$\,$\mbox{]})
+\item 
+tuple \mbox{\hyperlink{classatman_1_1database_1_1DBInterface_af3edf10e2dbf8d830a9d0e0ee7dce4e4}{execute\+\_\+sql}} (self, stmt, data=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a4a5888a6c2903cdf93ed82cd7c8f24db}{db\+\_\+internal}}
+\item 
+\mbox{\hyperlink{classatman_1_1database_1_1DBInterface_a7d30ddc0fe396a575aa80e90e48b6d56}{deltas}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 5 of file database.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a3a82de485844fc3b37286485fb5f81f4}\label{classatman_1_1database_1_1DBInterface_a3a82de485844fc3b37286485fb5f81f4}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def atman.\+database.\+D\+B\+Interface.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{connection\+\_\+parameters,  }\item[{}]{database\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file database.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a25e4373ce2256902475c60234f7c1ff3}\label{classatman_1_1database_1_1DBInterface_a25e4373ce2256902475c60234f7c1ff3}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!add\_column@{add\_column}}
+\index{add\_column@{add\_column}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{add\_column()}{add\_column()}}
+{\footnotesize\ttfamily  bool atman.\+database.\+D\+B\+Interface.\+add\+\_\+column (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{table\+\_\+name,  }\item[{}]{column\+\_\+name,  }\item[{}]{attributes = {\ttfamily \mbox{[}\mbox{]}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a column with given name and atrributes to the given table.
+\end{DoxyVerb}
+ 
+
+Definition at line 63 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a1962e77014592c96b6d38bbb64243d0f}\label{classatman_1_1database_1_1DBInterface_a1962e77014592c96b6d38bbb64243d0f}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!column\_names@{column\_names}}
+\index{column\_names@{column\_names}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{column\_names()}{column\_names()}}
+{\footnotesize\ttfamily  list atman.\+database.\+D\+B\+Interface.\+column\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{table\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fetch column names of given table.
+\end{DoxyVerb}
+ 
+
+Definition at line 47 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_afc38d233644f772c6adc8761878475aa}\label{classatman_1_1database_1_1DBInterface_afc38d233644f772c6adc8761878475aa}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!commit@{commit}}
+\index{commit@{commit}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily  bool atman.\+database.\+D\+B\+Interface.\+commit (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{attendance\+\_\+table\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_af3edf10e2dbf8d830a9d0e0ee7dce4e4}\label{classatman_1_1database_1_1DBInterface_af3edf10e2dbf8d830a9d0e0ee7dce4e4}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!execute\_sql@{execute\_sql}}
+\index{execute\_sql@{execute\_sql}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{execute\_sql()}{execute\_sql()}}
+{\footnotesize\ttfamily  tuple atman.\+database.\+D\+B\+Interface.\+execute\+\_\+sql (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{stmt,  }\item[{}]{data = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute any SQL statement and return a tuple:
+    1. STATUS(bool): False if error occurs and True otherwise.
+    2. ADDITIONAL:
+        If a resultset is given by SQL, that is packed here.
+        If an error is given by SQL, the error object is packed here.
+        If no resultset is returned but execution didn't cause an error, `None`.
+\end{DoxyVerb}
+ 
+
+Definition at line 73 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a6f43f7d7fbc8de2375c805562d1b22bc}\label{classatman_1_1database_1_1DBInterface_a6f43f7d7fbc8de2375c805562d1b22bc}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!push@{push}}
+\index{push@{push}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily def atman.\+database.\+D\+B\+Interface.\+push (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{class\+\_\+id,  }\item[{}]{name,  }\item[{}]{status = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_aca9ecfb1b16b82f2e0d5b4fedb47b40e}\label{classatman_1_1database_1_1DBInterface_aca9ecfb1b16b82f2e0d5b4fedb47b40e}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!rollback@{rollback}}
+\index{rollback@{rollback}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily def atman.\+database.\+D\+B\+Interface.\+rollback (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file database.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a4a5888a6c2903cdf93ed82cd7c8f24db}\label{classatman_1_1database_1_1DBInterface_a4a5888a6c2903cdf93ed82cd7c8f24db}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!db\_internal@{db\_internal}}
+\index{db\_internal@{db\_internal}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{db\_internal}{db\_internal}}
+{\footnotesize\ttfamily atman.\+database.\+D\+B\+Interface.\+db\+\_\+internal}
+
+
+
+Definition at line 8 of file database.\+py.
+
+\mbox{\Hypertarget{classatman_1_1database_1_1DBInterface_a7d30ddc0fe396a575aa80e90e48b6d56}\label{classatman_1_1database_1_1DBInterface_a7d30ddc0fe396a575aa80e90e48b6d56}} 
+\index{atman.database.DBInterface@{atman.database.DBInterface}!deltas@{deltas}}
+\index{deltas@{deltas}!atman.database.DBInterface@{atman.database.DBInterface}}
+\doxysubsubsection{\texorpdfstring{deltas}{deltas}}
+{\footnotesize\ttfamily atman.\+database.\+D\+B\+Interface.\+deltas}
+
+
+
+Definition at line 12 of file database.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+atman/\mbox{\hyperlink{database_8py}{database.\+py}}\end{DoxyCompactItemize}
