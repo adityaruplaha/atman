@@ -9,7 +9,7 @@ prettytable==2.0.0
 prompt-toolkit==3.0.8
 protobuf==3.14.0
 pycodestyle==2.6.0
-Pygments==2.7.3
+Pygments==2.7.4
 pylint==2.6.0
 pypager==3.0.0
 rope==0.18.0
