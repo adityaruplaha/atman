@@ -10,7 +10,7 @@ prompt-toolkit==3.0.14
 protobuf==3.14.0
 pycodestyle==2.6.0
 Pygments==2.7.4
-pylint==2.6.0
+pylint==2.7.0
 pypager==3.0.0
 rope==0.18.0
 six==1.15.0
