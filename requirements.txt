@@ -7,7 +7,7 @@ mccabe==0.6.1
 mysql-connector-python==8.0.23
 prettytable==2.0.0
 prompt-toolkit==3.0.16
-protobuf==3.15.1
+protobuf==3.15.3
 pycodestyle==2.6.0
 Pygments==2.8.0
 pylint==2.7.0
