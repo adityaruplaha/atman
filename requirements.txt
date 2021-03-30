@@ -1,4 +1,4 @@
-astroid==2.5.1
+astroid==2.5.2
 autopep8==1.5.6
 colorama==0.4.4
 isort==5.8.0
